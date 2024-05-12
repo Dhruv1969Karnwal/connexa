@@ -113,7 +113,7 @@ const getAllDetails = asyncHandler(async (req, res) => {
   let query = {};
 
   if (q) {
-    query = { companyName: { $regex: q, $options: "i" } };
+    query = { companyName: { $regex: q.toLowerCase(), $options: "i" } };
   }
 
   let companies;
@@ -132,11 +132,11 @@ const getAllDetails = asyncHandler(async (req, res) => {
       .limit(parsedLimit);
   }
 
-  if (!companies || companies.length === 0) {
-    return res
-      .status(404)
-      .json(new ApiResponse(404, null, "No companies found"));
-  }
+  // if (!companies || companies.length === 0) {
+  //   return res
+  //     .status(404)
+  //     .json(new ApiResponse(404, null, "No companies found"));
+  // }
 
   const totalCount = await Company.countDocuments(query);
   const totalPages = Math.ceil(totalCount / parsedLimit);
