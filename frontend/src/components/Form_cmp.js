@@ -21,7 +21,7 @@ const Form_cmp = () => {
 
   const fetchData = async () => {
     try {
-      let apiUrl = `http://localhost:8000/api/v1/all/companies?page=${page}&perPage=${perPage}`;
+      let apiUrl = `https://connexa-backend.onrender.com/api/v1/all/companies?page=${page}&perPage=${perPage}`;
 
       if (value) {
         apiUrl += `&q=${value}`;
